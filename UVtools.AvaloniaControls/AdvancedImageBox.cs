@@ -522,6 +522,7 @@ public class AdvancedImageBox : TemplatedControl, IScrollable
     private Bitmap? _trackerImage;
     private bool _canRender = true;
     private Point _pointerPosition;
+    private Point _imagePointerPosition;
     ZoomLevelCollection _zoomLevels = ZoomLevelCollection.Default;
     private int _oldZoom = 100;
 
@@ -691,6 +692,20 @@ public class AdvancedImageBox : TemplatedControl, IScrollable
     {
         get => _pointerPosition;
         private set => SetAndRaise(PointerPositionProperty, ref _pointerPosition, value);
+    }
+
+    public static readonly DirectProperty<AdvancedImageBox, Point> ImagePointerPositionProperty =
+        AvaloniaProperty.RegisterDirect<AdvancedImageBox, Point>(
+            nameof(ImagePointerPosition),
+            o => o.ImagePointerPosition);
+
+    /// <summary>
+    /// Gets the current pointer position in image coordinates
+    /// </summary>
+    public Point ImagePointerPosition
+    {
+        get => _imagePointerPosition;
+        private set => SetAndRaise(ImagePointerPositionProperty, ref _imagePointerPosition, PointToImage(PointerPosition));
     }
 
     public static readonly DirectProperty<AdvancedImageBox, bool> IsPanningProperty =
