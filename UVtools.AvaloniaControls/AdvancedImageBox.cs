@@ -705,7 +705,7 @@ public class AdvancedImageBox : TemplatedControl, IScrollable
     public Point ImagePointerPosition
     {
         get => _imagePointerPosition;
-        private set => SetAndRaise(ImagePointerPositionProperty, ref _imagePointerPosition, PointToImage(PointerPosition));
+        private set => SetAndRaise(ImagePointerPositionProperty, ref _imagePointerPosition, value);
     }
 
     public static readonly DirectProperty<AdvancedImageBox, bool> IsPanningProperty =
@@ -1145,7 +1145,7 @@ public class AdvancedImageBox : TemplatedControl, IScrollable
     }
 
     /// <summary>
-    /// <para>Gets if the image have zoom.</para>
+    /// <para>Gets if the image has zoom.</para>
     /// <para>True if zoomed in or out</para>
     /// <para>False if no zoom applied</para>
     /// </summary>
@@ -1930,6 +1930,7 @@ public class AdvancedImageBox : TemplatedControl, IScrollable
 
         var pointer = e.GetCurrentPoint(viewPort);
         PointerPosition = pointer.Position;
+        ImagePointerPosition = PointToImage(PointerPosition);
 
         if (!_isPanning && !_isSelecting)
         {
@@ -2535,8 +2536,8 @@ public class AdvancedImageBox : TemplatedControl, IScrollable
             x = 0; // Return Point.Empty if we couldn't match
             y = 0;
         }
-
-        return new(x, y);
+        
+        return new Point(x, y);
     }
 
     /// <summary>
