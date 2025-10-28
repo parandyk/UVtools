@@ -694,7 +694,7 @@ public class AdvancedImageBox : TemplatedControl, IScrollable
         private set => SetAndRaise(PointerPositionProperty, ref _pointerPosition, value);
     }
 
-    public static readonly DirectProperty<AdvancedImageBox, Point> Property =
+    public static readonly DirectProperty<AdvancedImageBox, Point> ImagePointerPositionProperty =
         AvaloniaProperty.RegisterDirect<AdvancedImageBox, Point>(
             nameof(ImagePointerPosition),
             o => o.ImagePointerPosition);
