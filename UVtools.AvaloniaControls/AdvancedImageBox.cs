@@ -522,7 +522,7 @@ public class AdvancedImageBox : TemplatedControl, IScrollable
     private Bitmap? _trackerImage;
     private bool _canRender = true;
     private Point _pointerPosition;
-    private Point _;
+    private Point _imagePointerPosition;
     ZoomLevelCollection _zoomLevels = ZoomLevelCollection.Default;
     private int _oldZoom = 100;
 
