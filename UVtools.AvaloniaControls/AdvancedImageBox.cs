@@ -2537,7 +2537,7 @@ public class AdvancedImageBox : TemplatedControl, IScrollable
             y = 0;
         }
         
-        return new Point(x, y);
+        return new(x, y);
     }
 
     /// <summary>
