@@ -507,6 +507,7 @@ public class AdvancedImageBox : TemplatedControl, IScrollable
 
     /// <inheritdoc />
     public Size Viewport => ViewPort?.Bounds.Size ?? Bounds.Size;
+    public Rect ViewportRect => ViewPort?.Bounds ?? Bounds;
     #endregion
 
     #region Private Members
@@ -522,7 +523,7 @@ public class AdvancedImageBox : TemplatedControl, IScrollable
     private Bitmap? _trackerImage;
     private bool _canRender = true;
     private Point _pointerPosition;
-    private Point _imagePointerPosition;
+    // private Point _imagePointerPosition;
     ZoomLevelCollection _zoomLevels = ZoomLevelCollection.Default;
     private int _oldZoom = 100;
 
@@ -694,19 +695,19 @@ public class AdvancedImageBox : TemplatedControl, IScrollable
         private set => SetAndRaise(PointerPositionProperty, ref _pointerPosition, value);
     }
 
-    public static readonly DirectProperty<AdvancedImageBox, Point> ImagePointerPositionProperty =
-        AvaloniaProperty.RegisterDirect<AdvancedImageBox, Point>(
-            nameof(ImagePointerPosition),
-            o => o.ImagePointerPosition);
-
-    /// <summary>
-    /// Gets the current pointer position in image coordinates
-    /// </summary>
-    public Point ImagePointerPosition
-    {
-        get => _imagePointerPosition;
-        private set => SetAndRaise(ImagePointerPositionProperty, ref _imagePointerPosition, value);
-    }
+    // public static readonly DirectProperty<AdvancedImageBox, Point> ImagePointerPositionProperty =
+    //     AvaloniaProperty.RegisterDirect<AdvancedImageBox, Point>(
+    //         nameof(ImagePointerPosition),
+    //         o => o.ImagePointerPosition);
+    //
+    // /// <summary>
+    // /// Gets the current pointer position in image coordinates
+    // /// </summary>
+    // public Point ImagePointerPosition
+    // {
+    //     get => _imagePointerPosition;
+    //     private set => SetAndRaise(ImagePointerPositionProperty, ref _imagePointerPosition, value);
+    // }
 
     public static readonly DirectProperty<AdvancedImageBox, bool> IsPanningProperty =
         AvaloniaProperty.RegisterDirect<AdvancedImageBox, bool>(
@@ -1930,7 +1931,7 @@ public class AdvancedImageBox : TemplatedControl, IScrollable
 
         var pointer = e.GetCurrentPoint(viewPort);
         PointerPosition = pointer.Position;
-        ImagePointerPosition = PointToImage(PointerPosition);
+        // ImagePointerPosition = PointToImage(PointerPosition);
 
         if (!_isPanning && !_isSelecting)
         {
